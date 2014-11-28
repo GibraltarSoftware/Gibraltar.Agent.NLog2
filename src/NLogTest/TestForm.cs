@@ -53,7 +53,7 @@ namespace NLogTest
             catch (Exception ex)
             {
                 //m_Log.WarnException("Worker error", ex); // Simple non-format method to log ex to NLog in general.
-                m_Log.Warn("Worker error\r\nWorker {0} threw an exception.\r\n", workerName, ex); // Gibraltar will include ex from parameters in this case.
+                m_Log.Warn("Worker error\r\nWorker {0} threw an exception.\r\n", workerName, ex); // Loupe will include ex from parameters in this case.
             }
         }
 

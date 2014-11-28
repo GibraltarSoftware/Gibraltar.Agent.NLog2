@@ -28,8 +28,8 @@ Adjust your configuration to use the GibraltarTarget
 ----------------------------------------------------
 
 Loupe is intended as a top-level catch-all to collect all of your logging in one managed place so you can filter
-as needed dynamically during analysis.  To do this, modify the <code>extensions</code>, <code>targets</code>, and
-<code>rules</code> sections of your NLog configuration as follows:
+as needed dynamically during analysis.  To do this, modify the _extensions_, _targets_, and
+_rules_ sections of your NLog configuration as follows:
 
 1. Include Gibraltar.Agent.NLog as an extension:
 
@@ -53,7 +53,7 @@ as needed dynamically during analysis.  To do this, modify the <code>extensions<
 
 If you find minlevel="Trace" too voluminous for normal collection, the minlevel may be set at
 "Debug" instead.  Also, see the example App.config file in the Gibraltar.Agent.NLog project,
-and consult the <a href="http://www.nlog-project.org/config.html">NLog configuration documentation</a> as needed.
+and consult the [NLog configuration documentation](http://nlog-project.org) as needed.
 
 Make sure to log something to Loupe early in your application to load the Loupe
 Agent and initialize its automatic monitoring features.  For example:</p>
@@ -61,3 +61,16 @@ Agent and initialize its automatic monitoring features.  For example:</p>
 ```C#
 mainLogger.LogInfo("Entering application.");
 ```
+
+Building the Agent
+------------------
+
+This project is designed for use with Visual Studio 2012 with NuGet package restore enabled.
+When you build it the first time it will retrieve dependencies from NuGet.
+
+Contributing
+------------
+
+Feel free to branch this project and contribute a pull request to the development branch. 
+If your changes are incorporated into the master version they'll be published out to NuGet for
+everyone to use!

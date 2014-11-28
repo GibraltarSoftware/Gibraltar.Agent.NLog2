@@ -13,7 +13,7 @@ namespace NLogTest
         public BusyWork(string name)
         {
             m_Name = name;
-            // Create a category by combining info from the type with aditional info
+            // Create a category by combining info from the type with additional info
             m_Category = typeof(TestForm).FullName + "." + name;
             m_Log = LogManager.GetLogger(m_Category);
         }

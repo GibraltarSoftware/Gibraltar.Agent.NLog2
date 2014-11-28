@@ -8,7 +8,7 @@ using NLog.Targets;
 namespace Gibraltar.Agent.NLog
 {
     /// <summary>
-    /// A specialized adapter Target for sending NLog event messages to Gibraltar's central log.
+    /// A specialized adapter Target for sending NLog event messages to Loupe's central log.
     /// </summary>
     [Target("Gibraltar")]
     public class GibraltarTarget : Target
@@ -25,7 +25,7 @@ namespace Gibraltar.Agent.NLog
         }
 
         /// <summary>
-        /// Write the log event received by this Target into the Gibraltar central log.
+        /// Write the log event received by this Target into the Loupe central log.
         /// </summary>
         /// <param name="logEvent">The LogEventInfo for a log event.</param>
         protected override void Write(LogEventInfo logEvent)
@@ -44,7 +44,7 @@ namespace Gibraltar.Agent.NLog
         }
 
         /// <summary>
-        /// A helper method to determine the "category" for a log event when sending it to Gibraltar.
+        /// A helper method to determine the "category" for a log event when sending it to Loupe.
         /// </summary>
         /// <param name="logEvent">The LogEventInfo for a log event.</param>
         /// <returns>A dot-delimited hierarchy string similar to a namespace. (By default just returns the LoggerName.)</returns>
@@ -53,7 +53,7 @@ namespace Gibraltar.Agent.NLog
             string category = logEvent.LoggerName; // Default to just the logger name, but this is normally just the class name.
 
             /*
-             * Gibraltar already captures the class name, so the convention of using the logging class as the logger name
+             * Loupe already captures the class name, so the convention of using the logging class as the logger name
              * would mean that the default "category" may be redundant information.  If you would like to capture some other
              * property from the LogEventInfo as the log event's category (a dot-delimited hierarchy, similar to a namespace)
              * then you can add that code here.
@@ -65,11 +65,11 @@ namespace Gibraltar.Agent.NLog
         /// <summary>
         /// A helper method to find any Exception provided with the log event.
         /// </summary>
-        /// <remarks>Gibraltar allows an Exception to be attached to any log message, but the NLog methods for logging
+        /// <remarks>Loupe allows an Exception to be attached to any log message, but the NLog methods for logging
         /// exceptions don't support format parameters (only a simple string).  This logic will allow any Exception passed
-        /// among the format parameters of a log event (even one ignored by the format string) to be specified to Gibraltar,
-        /// so you can log an Exception to Gibraltar with a formatted message.  However, only the first Exception among the
-        /// format parameters will be attached to the message in Gibraltar, and other NLog targets will not necessarily
+        /// among the format parameters of a log event (even one ignored by the format string) to be specified to Loupe,
+        /// so you can log an Exception to Loupe with a formatted message.  However, only the first Exception among the
+        /// format parameters will be attached to the message in Loupe, and other NLog targets will not necessarily
         /// act on an Exception included among the format parameters, beyond the normal format expansion.</remarks>
         /// <param name="logEvent">The LogEventInfo for a log event.</param>
         /// <returns>The Exception specified in the LogEventInfo, or else the first Exception found among the Parameters.</returns>
@@ -96,7 +96,7 @@ namespace Gibraltar.Agent.NLog
         }
 
         /// <summary>
-        /// A helper method to translate an NLog's log event level into a Gibraltar log message severity.
+        /// A helper method to translate an NLog's log event level into a Loupe log message severity.
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace Gibraltar.Agent.NLog
         {
             LogMessageSeverity severity = LogMessageSeverity.None;
 
-            // Check from most-frequent first, but round any unrecognized levels down to the best Gibraltar severity match.
+            // Check from most-frequent first, but round any unrecognized levels down to the best Loupe severity match.
             if (level < LogLevel.Info)
                 severity = LogMessageSeverity.Verbose;
             else if (level < LogLevel.Warn)
@@ -120,7 +120,7 @@ namespace Gibraltar.Agent.NLog
         }
 
         /// <summary>
-        /// A conversion class to extract full message source information from LogEventInfo and provide it for Gibraltar.
+        /// A conversion class to extract full message source information from LogEventInfo and provide it for Loupe.
         /// </summary>
         private class NLogSourceProvider : IMessageSourceProvider
         {
