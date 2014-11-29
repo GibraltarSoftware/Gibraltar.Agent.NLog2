@@ -1,6 +1,11 @@
 Gibraltar Loupe Agent for NLog 2.0
 =====================
 
+This agent extends NLog to send messages to Loupe.  If you don't need
+to modify the source code just download the latest 
+[Loupe Agent for NLog 2 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog2/). 
+It extends the [Loupe Agent](https://nuget.org/packages/Gibraltar.Agent/) so you can 
+use any viewer for Loupe to review the agent's information
 
 Adapting your .NET Application's NLog logging to include Loupe
 --------------------------------------------------------------
