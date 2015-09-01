@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Gibraltar.Agent.NLog2</id>
+    <version>$version$-beta</version>
+    <title>Gibraltar Loupe Agent for NLog 2.0</title>
+    <authors>Gibraltar Software</authors>
+    <licenseUrl>http://www.gibraltarsoftware.com/Support/Loupe/Documentation/WebFrame.html#Reference_GibraltarAgentLicense.html</licenseUrl>
+    <projectUrl>http://www.gibraltarsoftware.com/External/Getting-Started-video.aspx</projectUrl>
+    <owners>Gibraltar Software</owners>
+    <iconUrl>http://www.gibraltarsoftware.com/loupe.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NLog is a powerful, flexible logging system available for all .NET platforms.  It's a great choice when you need very sophisticated log gathering capabilities such as sending log messages from clients to servers, multiple logging levels used simultaneously in the application, and a range of other sophisticated features. This package enables NLog message to route into Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</description>
+    <summary>Connects NLog with Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</summary>
+    <tags>Loupe Logging</tags>
+  </metadata>
+  <files>
+    <file src="content\*.*" target="content" />
+  </files>
+</package>
