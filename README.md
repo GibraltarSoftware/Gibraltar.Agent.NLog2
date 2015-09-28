@@ -13,7 +13,7 @@ Adapting your .NET Application's NLog logging to include Loupe
 To convert your .NET application's existing use of the NLog logging framework to include Loupe you need:
 
 * (recommended) Download and install the latest version of Loupe Desktop to view the logs
-* The Agent.NLog project containing the class file: GibraltarTarget.cs 
+* The Loupe Agent for NLog  from NuGet or the Agent.NLog project containing the class file: GibraltarTarget.cs 
 * Your NLog configuration file (app.config, NLog.config, NLog.dll.nlog, etc), 
   or source code if programmatic configuration is used.
 
@@ -23,10 +23,10 @@ To add this Gibraltar.Agent.NLog library to your solution or build process
 1. Check that the Reference to the NLog library points to where you have it on your system or build process.  If needed,
     either add the correct reference and delete the broken one, or else edit the project file directly and correct the path.
 2. Confirm that the Reference to the Loupe Agent (Gibraltar.Agent) is valid, or correct it.  It's highly
-  recommend you use NuGet to get the latest Loupe Agent. 
+    recommend you use NuGet to get the latest Loupe Agent. 
 3. Build this project and either add this project to your application as a dependency or copy the
     Gibraltar.Agent.NLog.dll library it builds to wherever you keep external library dependencies.
-4. Also include the Gibraltar.Agent.dll and Gibraltar.Packager.exe in your distribution and installation in the
+4. Also include the Gibraltar.Agent.dll in your distribution and install in the
     directory for your application executable.
 
 Adjust your configuration to use the GibraltarTarget
