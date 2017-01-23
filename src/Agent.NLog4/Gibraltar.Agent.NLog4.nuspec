@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Gibraltar.Agent.NLog4</id>
-    <version>$version$</version>
+    <version>$version$-alpha</version>
     <title>Loupe Agent for NLog 4.0</title>
     <authors>Gibraltar Software</authors>
     <owners>Gibraltar Software</owners>
