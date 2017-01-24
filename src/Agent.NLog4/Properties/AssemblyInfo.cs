@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NLog 2 Target")]
-[assembly: AssemblyDescription("Extends Loupe Agent for NLog 2")]
+[assembly: AssemblyTitle("NLog 4 Target")]
+[assembly: AssemblyDescription("Extends Loupe Agent for NLog 4")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Gibraltar Software, Inc.")]
 [assembly: AssemblyProduct("Loupe")]
-[assembly: AssemblyCopyright("Copyright © 2008-2015 Gibraltar Software, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2008-2017 Gibraltar Software, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("4.0.0.0")]
-[assembly: AssemblyFileVersion("4.0.0.3015")]
-[assembly: AssemblyInformationalVersionAttribute("4.0.0.3015")]
+[assembly: AssemblyFileVersion("4.0.3.3459")]
+[assembly: AssemblyInformationalVersionAttribute("4.0.3.3459")]
