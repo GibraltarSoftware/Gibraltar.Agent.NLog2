@@ -1,11 +1,8 @@
-Gibraltar Loupe Agent for NLog 2.0
+Gibraltar Loupe Agent for NLog 2.0 and Later
 =====================
 
-This agent extends NLog to send messages to Loupe.  If you don't need
-to modify the source code just download the latest 
-[Loupe Agent for NLog 2 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog2/). 
-It extends the [Loupe Agent](https://nuget.org/packages/Gibraltar.Agent/) so you can 
-use any viewer for Loupe to review the agent's information
+This agent extends NLog to send messages to the [Loupe Agent](https://nuget.org/packages/Gibraltar.Agent/) so you can
+use any viewer for Loupe to review the agent's information and have it stored & analyzed by Loupe Server.
 
 Adapting your .NET Application's NLog logging to include Loupe
 --------------------------------------------------------------
@@ -13,21 +10,18 @@ Adapting your .NET Application's NLog logging to include Loupe
 To convert your .NET application's existing use of the NLog logging framework to include Loupe you need:
 
 * (recommended) Download and install the latest version of Loupe Desktop to view the logs
-* The Loupe Agent for NLog  from NuGet or the Agent.NLog project containing the class file: GibraltarTarget.cs 
-* Your NLog configuration file (app.config, NLog.config, NLog.dll.nlog, etc), 
+* The Loupe Agent for NLog  from NuGet or the Agent.NLog project containing the class file: GibraltarTarget.cs
+* Your NLog configuration file (app.config, NLog.config, NLog.dll.nlog, etc),
   or source code if programmatic configuration is used.
 
-To add this Gibraltar.Agent.NLog library to your solution or build process
+To add this agent to your solution or build process
 --------------------------------------------------------------------------
 
-1. Check that the Reference to the NLog library points to where you have it on your system or build process.  If needed,
-    either add the correct reference and delete the broken one, or else edit the project file directly and correct the path.
-2. Confirm that the Reference to the Loupe Agent (Gibraltar.Agent) is valid, or correct it.  It's highly
-    recommend you use NuGet to get the latest Loupe Agent. 
-3. Build this project and either add this project to your application as a dependency or copy the
-    Gibraltar.Agent.NLog.dll library it builds to wherever you keep external library dependencies.
-4. Also include the Gibraltar.Agent.dll in your distribution and install in the
-    directory for your application executable.
+Just add the appropriate Loupe Agent for NLog NuGet package to your project
+  * [Loupe Agent for NLog 2 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog2/) for NLog 2 & 3
+  * [Loupe Agent for NLog 4 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog4/) for NLog 4 & later
+
+This will automatically add the Loupe Agent if it hasn't been previously added.
 
 Adjust your configuration to use the GibraltarTarget
 ----------------------------------------------------
@@ -38,8 +32,14 @@ _rules_ sections of your NLog configuration as follows:
 
 1. Include Gibraltar.Agent.NLog as an extension:
 
+For NLog 4 & Later:
 ```XML
-<add assembly="Gibraltar.Agent.NLog" />
+<add assembly="Gibraltar.Agent.NLog4" />
+```
+
+For NLog 2 & 3:
+```XML
+<add assembly="Gibraltar.Agent.NLog2" />
 ```
 
 2. Add the GibraltarTarget as a target:
@@ -57,7 +57,7 @@ _rules_ sections of your NLog configuration as follows:
 (we recommend that it be the first rule- or at least before any "final" rules - to avoid missing any).
 
 If you find minlevel="Trace" too voluminous for normal collection, the minlevel may be set at
-"Debug" instead.  Also, see the example App.config file in the Gibraltar.Agent.NLog project,
+"Debug" instead.  Also, see the example App.config file in the Gibraltar.Agent.NLog4 project,
 and consult the [NLog configuration documentation](http://nlog-project.org) as needed.
 
 Make sure to log something to Loupe early in your application to load the Loupe
@@ -70,7 +70,7 @@ mainLogger.LogInfo("Entering application.");
 Building the Agent
 ------------------
 
-This project is designed for use with Visual Studio 2012 with NuGet package restore enabled.
+This project is designed for use with Visual Studio 2017 with NuGet package restore enabled.
 When you build it the first time it will retrieve dependencies from NuGet.
 
 Contributing
