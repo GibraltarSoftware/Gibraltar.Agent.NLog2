@@ -15,19 +15,11 @@ namespace Gibraltar.Agent.NLog
     public class GibraltarTarget : TargetWithLayout
     {
         private const string ThisLogSystem = "NLog";
-        private readonly CallSiteLayoutRenderer _renderer = new CallSiteLayoutRenderer() {IncludeSourcePath = true, FileName = true, MethodName = true}; 
-
-        /// <summary>
-        /// A renderer property just to force NLog to include stack trace info
-        /// </summary>
-        public CallSiteLayoutRenderer Renderer => _renderer;
-
 
         public GibraltarTarget()
         {
-            Layout = new SimpleLayout("${callsite-linenumber}"); //just to force NLog to include stack trace info in 4.3 and later.
+            Layout = new SimpleLayout("${callsite}"); //just to force NLog to include stack trace info.
         }
-
 
         /// <summary>
         /// Write the log event received by this Target into the Loupe central log.
