@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using NLog;
 using NLog.LayoutRenderers;
+using NLog.Layouts;
 using NLog.Targets;
 
 namespace Gibraltar.Agent.NLog
@@ -11,18 +12,22 @@ namespace Gibraltar.Agent.NLog
     /// A specialized adapter Target for sending NLog event messages to Loupe's central log.
     /// </summary>
     [Target("Gibraltar")]
-    public class GibraltarTarget : Target
+    public class GibraltarTarget : TargetWithLayout
     {
         private const string ThisLogSystem = "NLog";
-        private readonly CallSiteLayoutRenderer m_Renderer = new CallSiteLayoutRenderer() {IncludeSourcePath = true, FileName = true, MethodName = true}; 
+        private readonly CallSiteLayoutRenderer _renderer = new CallSiteLayoutRenderer() {IncludeSourcePath = true, FileName = true, MethodName = true}; 
 
         /// <summary>
         /// A renderer property just to force NLog to include stack trace info
         /// </summary>
-        public CallSiteLayoutRenderer Renderer
+        public CallSiteLayoutRenderer Renderer => _renderer;
+
+
+        public GibraltarTarget()
         {
-            get { return m_Renderer; }
+            Layout = new SimpleLayout("${callsite-linenumber}"); //just to force NLog to include stack trace info in 4.3 and later.
         }
+
 
         /// <summary>
         /// Write the log event received by this Target into the Loupe central log.
@@ -33,10 +38,12 @@ namespace Gibraltar.Agent.NLog
             if (logEvent == null)
                 return;
 
-            LogMessageSeverity severity = GetSeverityLevel(logEvent.Level);
-            IMessageSourceProvider sourceProvider = new NLogSourceProvider(logEvent);
-            string category = GetCategory(logEvent);
-            Exception exception = GetException(logEvent);
+            var formattedMessage = Layout.Render(logEvent);
+
+            var severity = GetSeverityLevel(logEvent.Level);
+            var sourceProvider = new NLogSourceProvider(logEvent);
+            var category = GetCategory(logEvent);
+            var exception = GetException(logEvent);
 
             // By passing null for caption it will automatically get the caption from the first line of the formatted message.
             Gibraltar.Agent.Log.Write(severity, ThisLogSystem, sourceProvider, null, exception, LogWriteMode.Queued,
