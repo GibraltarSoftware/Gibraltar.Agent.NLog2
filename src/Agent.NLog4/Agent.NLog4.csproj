@@ -42,8 +42,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gibraltar.Agent, Version=4.5.0.0, Culture=neutral, PublicKeyToken=ca42a1ee8d2e42d3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Gibraltar.Agent.4.6.4\lib\net40\Gibraltar.Agent.dll</HintPath>
+    <Reference Include="Gibraltar.Agent, Version=4.7.0.0, Culture=neutral, PublicKeyToken=ca42a1ee8d2e42d3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Gibraltar.Agent.4.7.10\lib\net40\Gibraltar.Agent.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.4.0.0\lib\net40\NLog.dll</HintPath>
@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="content\app.config.transform" />
     <None Include="content\web.config.transform" />
     <None Include="Gibraltar.Agent.NLog4.nuspec" />
