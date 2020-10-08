@@ -7,7 +7,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <extensions>
       <!--Contains GibraltarTarget class marked as "Gibraltar" target type-->
-      <add assembly="Gibraltar.Agent.NLog4" />
+      <add assembly="Gibraltar.Agent.NLog45" />
     </extensions>
     <targets>
       <!--Define a named target using the "Gibraltar" target type-->

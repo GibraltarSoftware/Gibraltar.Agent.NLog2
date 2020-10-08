@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Gibraltar.Agent.NLog4</id>
+    <id>Gibraltar.Agent.NLog45</id>
     <version>$version$</version>
-    <title>Loupe Agent for NLog 4.0</title>
+    <title>Loupe Agent for NLog 4.5+</title>
     <authors>Gibraltar Software</authors>
     <owners>Gibraltar Software</owners>
     <copyright>Copyright © 2008-2018 Gibraltar Software, Inc.</copyright>
