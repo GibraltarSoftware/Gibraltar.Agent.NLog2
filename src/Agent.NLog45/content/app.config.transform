@@ -6,16 +6,16 @@
   <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <extensions>
-      <!--Contains GibraltarTarget class marked as "Gibraltar" target type-->
-      <add assembly="Gibraltar.Agent.NLog45" />
+      <!--Contains LoupeTarget class marked as "Loupe" target type-->
+      <add assembly="Loupe.Agent.NLog" />
     </extensions>
     <targets>
-      <!--Define a named target using the "Gibraltar" target type-->
-      <target name="Gibraltar" xsi:type="Gibraltar" />
+      <!--Define a named target using the "Loupe" target type-->
+      <target name="Loupe" xsi:type="Loupe" />
     </targets>
     <rules>
-      <!--Send all logging to the "Gibraltar" named target-->
-      <logger name="*" minlevel="Trace" writeTo="Gibraltar" />
+      <!--Send all logging to the "Loupe" named target-->
+      <logger name="*" minlevel="Trace" writeTo="Loupe" />
     </rules>
   </nlog>
 </configuration>

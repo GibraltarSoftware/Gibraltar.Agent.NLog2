@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Gibraltar.Agent;
 using NLog;
 
 namespace NLogTest
@@ -18,9 +19,15 @@ namespace NLogTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            log.Info("Entering application.");
-            Application.Run(new TestForm());
-            log.Info("Exiting application.");
+            try
+            {
+                log.Info("Starting application.");
+                Application.Run(new TestForm());
+            }
+            finally
+            {
+                Log.EndSession("Application shutting down");
+            }
         }
     }
 }

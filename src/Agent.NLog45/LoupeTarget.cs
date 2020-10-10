@@ -11,12 +11,12 @@ namespace Loupe.Agent.NLog
     /// <summary>
     /// A specialized adapter Target for sending NLog event messages to Loupe's central log.
     /// </summary>
-    [Target("Gibraltar")]
-    public class GibraltarTarget : TargetWithLayout
+    [Target("Loupe")]
+    public class LoupeTarget : TargetWithLayout
     {
         private const string ThisLogSystem = "NLog";
 
-        public GibraltarTarget()
+        public LoupeTarget()
         {
             Layout = new SimpleLayout("${callsite}"); //just to force NLog to include stack trace info.
         }
