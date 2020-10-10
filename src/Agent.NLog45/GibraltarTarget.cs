@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
+using Gibraltar.Agent;
 using NLog;
-using NLog.LayoutRenderers;
 using NLog.Layouts;
 using NLog.Targets;
 
-namespace Gibraltar.Agent.NLog
+namespace Loupe.Agent.NLog
 {
     /// <summary>
     /// A specialized adapter Target for sending NLog event messages to Loupe's central log.
@@ -123,21 +123,16 @@ namespace Gibraltar.Agent.NLog
         /// </summary>
         private class NLogSourceProvider : IMessageSourceProvider
         {
-            private readonly string m_MethodName;
-            private readonly string m_ClassName;
-            private readonly string m_FileName;
-            private readonly int m_LineNumber;
-
             /// <summary>
             /// Construct an NLogSourceProvider for a given log event.
             /// </summary>
             /// <param name="logEvent">The LogEventInfo of the log event.</param>
             public NLogSourceProvider(LogEventInfo logEvent)
             {
-                m_MethodName = null;
-                m_ClassName = null;
-                m_FileName = null;
-                m_LineNumber = 0;
+                MethodName = null;
+                ClassName = null;
+                FileName = null;
+                LineNumber = 0;
 
                 try
                 {
@@ -147,70 +142,58 @@ namespace Gibraltar.Agent.NLog
                         MethodBase method = frame.GetMethod();
                         if (method != null)
                         {
-                            m_MethodName = method.Name;
-                            m_ClassName = method.ReflectedType.FullName;
+                            MethodName = method.Name;
+                            ClassName = method.ReflectedType.FullName;
 
                             try
                             {
                                 // Now see if we also have file information.
-                                m_FileName = frame.GetFileName();
-                                if (string.IsNullOrEmpty(m_FileName) == false)
+                                FileName = frame.GetFileName();
+                                if (string.IsNullOrEmpty(FileName) == false)
                                 {
-                                    m_LineNumber = frame.GetFileLineNumber();
+                                    LineNumber = frame.GetFileLineNumber();
                                 }
                                 else
                                 {
-                                    m_LineNumber = 0; // Not meaningful if there's no file name!
+                                    LineNumber = 0; // Not meaningful if there's no file name!
                                 }
                             }
                             catch
                             {
-                                m_FileName = null;
-                                m_LineNumber = 0;
+                                FileName = null;
+                                LineNumber = 0;
                             }
                         }
                     }
                 }
                 catch
                 {
-                    m_MethodName = null;
-                    m_ClassName = null;
-                    m_FileName = null;
-                    m_LineNumber = 0;
+                    MethodName = null;
+                    ClassName = null;
+                    FileName = null;
+                    LineNumber = 0;
                 }
             }
 
             /// <summary>
             /// Should return the simple name of the method which issued the log message.
             /// </summary>
-            public string MethodName
-            {
-                get { return m_MethodName; }
-            }
+            public string MethodName { get; }
 
             /// <summary>
             /// Should return the full name of the class (with namespace) whose method issued the log message.
             /// </summary>
-            public string ClassName
-            {
-                get { return m_ClassName; }
-            }
+            public string ClassName { get; }
 
             /// <summary>
             /// Should return the name of the file containing the method which issued the log message.
             /// </summary>
-            public string FileName
-            {
-                get { return m_FileName; }
-            }
+            public string FileName { get; }
 
             /// <summary>
             /// Should return the line within the file at which the log message was issued.
             /// </summary>
-            public int LineNumber
-            {
-                get { return m_LineNumber; }
-            }
+            public int LineNumber { get; }
         }
     }
 }
