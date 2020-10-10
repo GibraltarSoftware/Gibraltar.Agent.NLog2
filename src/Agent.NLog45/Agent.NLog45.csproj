@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Loupe.Agent.NLog</RootNamespace>
+    <AssemblyName>Loupe.Agent.NLog</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Loupe.Agent.NLog</PackageId>
+    <Version>4.9.0.0</Version>
+    <FileVersion>4.9.0.0</FileVersion>
+    <AssemblyVersion>4.9.0.0</AssemblyVersion>
+    <Company>Gibraltar Software, Inc.</Company>
+    <Authors>Gibraltar Software, Inc.</Authors>
+    <Product>Loupe</Product>
+    <Copyright>Copyright © 2008-2020 Gibraltar Software, Inc.</Copyright>
+    <PackageProjectUrl>https://onloupe.com</PackageProjectUrl>
+    <PackageIcon>loupe-192x192.png</PackageIcon>
+    <RepositoryUrl>https://github.com/gibraltarsoftware/gibraltar.agent.nlog2</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <description>NLog is a powerful, flexible logging system available for all .NET platforms.  It's a great choice when you need very sophisticated log gathering capabilities such as sending log messages from clients to servers, multiple logging levels used simultaneously in the application, and a range of other sophisticated features. This package enables NLog message to route into Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</description>
+    <summary>Connects NLog with Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</summary>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DisableImplicitAssetTargetFallback>true</DisableImplicitAssetTargetFallback>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>..\..\loupe.agent.snk</AssemblyOriginatorKeyFile>
+    <DocumentationFile>bin\Loupe.Agent.NLog.xml</DocumentationFile>
+    <PackageTags>Loupe;Logging;NLog</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\assets\loupe-192x192.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Loupe.Agent.Core">
+      <Version>4.9.0.13</Version>
+    </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+</Project>
