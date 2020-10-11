@@ -1,33 +1,20 @@
-Loupe Agent for NLog 2.0 and Later
-=====================
+# Loupe Agent for NLog #
 
 This agent extends NLog to send messages to the [Loupe Agent](https://nuget.org/packages/Gibraltar.Agent/) so you can
 use any viewer for Loupe to review the agent's information and have it stored & analyzed by Loupe Server.
 
-Adapting your .NET Application's NLog logging to include Loupe
---------------------------------------------------------------
-
-To convert your .NET application's existing use of the NLog logging framework to include Loupe you need:
-
-* (recommended) Download and install the latest version of Loupe Desktop to view the logs
-* The Loupe Agent for NLog from NuGet
-* Your NLog configuration file (app.config, NLog.config, NLog.dll.nlog, etc),
-  or source code if programmatic configuration is used.
-
-To add this agent to your application
---------------------------------------------------------------------------
+## To add this agent to your application ##
 
 Just add the appropriate Loupe Agent for NLog NuGet package to your project
 * [Loupe.Agent.NLog](https://www.nuget.org/packages/Loupe.Agent.NLog/) for NLog 4.5 and .NET Core / .NET Standard
-* [Loupe Agent for NLog 4 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog4/) for NLog 4.4 (and .NET 4.5)
-* [Loupe Agent for NLog 2 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog2/) for NLog 2 & 3
+* [Loupe Agent for NLog 4](https://www.nuget.org/packages/Gibraltar.Agent.NLog4/) for NLog 4.4 (and .NET 4.5)
+* [Loupe Agent for NLog 2](https://www.nuget.org/packages/Gibraltar.Agent.NLog2/) for NLog 2 & 3
   
-This will automatically add the Loupe Agent if it hasn't been previously added.  
+This will automatically add the correct Loupe Agent if it hasn't been previously added.  
 This only has to be done once at the process level of your application, not every place
 that NLog is used.
 
-Adjust your NLog config to include NLog target for Loupe
-----------------------------------------------------
+## Adjust your NLog config to include NLog target for Loupe ##
 
 Loupe is intended as a top-level catch-all to collect all of your logging in one managed place so you can filter
 as needed dynamically during analysis.  To do this, modify the _extensions_, _targets_, and
@@ -82,7 +69,20 @@ Example of using these options:
     </target>
 ```
 
-**Gibraltar.Agent.NLog4**
+## Viewing Logs with Loupe ##
+
+Loupe stores log data in a compact, binary format that supports .NET data types.  This format
+is best viewed using either [Loupe Desktop](https://onloupe.com/local-logging/free-net-log-viewer) (free)
+or [Loupe Server](https://onloupe.com) (available self-hosted or hosted by Gibraltar Software)
+Log files are automatically created, rolled over, and pruned for space and age by the Loupe agent.
+For more information, see [Getting Started with Loupe](https://doc.onloupe.com)
+
+## Use with .NET Framework 4.5 and Older ##
+
+Loupe continues to support older versions of .NET with the original Loupe Agent and using the 
+agents for NLog 2 and NLog 4.  
+
+### Gibraltar.Agent.NLog4 ###
 Support NLog 4.4 (and older) along with .NET Framework ver. 4.5
 
 1. Install nuget-package:
@@ -113,7 +113,8 @@ Install-Package Gibraltar.Agent.NLog4
     NLog.LogManager.GetLogger("App").Info("Starting...");
 ```
 
-**Gibraltar.Agent.NLog2**
+### Gibraltar.Agent.NLog2 ###
+
 Legacy support for NLog ver. 2 and 3
 
 1. Install nuget-package:
@@ -144,8 +145,8 @@ Install-Package Gibraltar.Agent.NLog2
     NLog.LogManager.GetLogger("App").Info("Starting...");
 ```
 
-Best Practises
-------------------
+## Best Practices ##
+
 We recommend to have the NLog logging-rule for the Loupe-target as the first rule,
 or at least before any "final" rules - to avoid missing any relevant logevents.
 
@@ -187,14 +188,15 @@ private static void Main()
 }
 ```
 
-Building the Agent
-------------------
+For more information, see [Using NLog with Loupe](https://doc.onloupe.com/ThirdParty_NLog.html) in
+the main Loupe documentation.
+
+## Building the Agent ##
 
 This project is designed for use with Visual Studio 2017 with NuGet package restore enabled.
 When you build it the first time it will retrieve dependencies from NuGet.
 
-Contributing
-------------
+## Contributing ##
 
 Feel free to branch this project and contribute a pull request to the development branch. 
 If your changes are incorporated into the master version they'll be published out to NuGet for
