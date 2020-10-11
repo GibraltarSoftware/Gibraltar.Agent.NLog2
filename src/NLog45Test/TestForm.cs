@@ -32,7 +32,7 @@ namespace NLogTest
             }
             catch (Exception ex)
             {
-                m_Log.ErrorException("Oh Snap!  We just had an exception!", ex);
+                m_Log.Error(ex, "Oh Snap!  We just had an exception!");
             }
         }
 
