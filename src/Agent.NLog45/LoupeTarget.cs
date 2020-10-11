@@ -60,7 +60,7 @@ namespace Loupe.Agent.NLog
         [ArrayParameter(typeof(JsonAttribute), "contextproperty")]
         public IList<JsonAttribute> ContextProperties
         {
-            get => new ContextPropetiesProxy(this);
+            get => new ContextPropertiesProxy(this);
             set
             {
                 var messageDetails = GetMessageDetailsLayout(value?.Count > 0);
@@ -277,12 +277,12 @@ namespace Loupe.Agent.NLog
         /// <summary>
         /// IList-Proxy for ContextProperties to skip allocation and rendering using JsonLayout unless requested
         /// </summary>
-        private class ContextPropetiesProxy : IList<JsonAttribute>, IList
+        private class ContextPropertiesProxy : IList<JsonAttribute>, IList
         {
             private readonly LoupeTarget _loupeTarget;
             IList<JsonAttribute> _contextProperties;
 
-            public ContextPropetiesProxy(LoupeTarget loupeTarget)
+            public ContextPropertiesProxy(LoupeTarget loupeTarget)
             {
                 _loupeTarget = loupeTarget;
                 _contextProperties = GetContextProperties(false);
