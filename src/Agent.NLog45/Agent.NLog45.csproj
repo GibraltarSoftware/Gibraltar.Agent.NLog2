@@ -6,9 +6,9 @@
     <AssemblyName>Loupe.Agent.NLog</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Loupe.Agent.NLog</PackageId>
-    <Version>4.9.0.0</Version>
-    <FileVersion>4.9.0.0</FileVersion>
-    <AssemblyVersion>4.9.0.0</AssemblyVersion>
+    <Version>4.9.1.0</Version>
+    <FileVersion>4.9.1.0</FileVersion>
+    <AssemblyVersion>4.9.1.0</AssemblyVersion>
     <Company>Gibraltar Software, Inc.</Company>
     <Authors>Gibraltar Software, Inc.</Authors>
     <Product>Loupe</Product>
