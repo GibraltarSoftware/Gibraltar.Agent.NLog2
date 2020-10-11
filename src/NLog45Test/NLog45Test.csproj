@@ -92,7 +92,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
+	<None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -132,7 +132,7 @@
       <Version>4.9.0.13</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.5.0</Version>
+      <Version>4.5.11</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
