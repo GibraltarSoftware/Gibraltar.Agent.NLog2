@@ -1,4 +1,4 @@
-Gibraltar Loupe Agent for NLog 2.0 and Later
+Loupe Agent for NLog 2.0 and Later
 =====================
 
 This agent extends NLog to send messages to the [Loupe Agent](https://nuget.org/packages/Gibraltar.Agent/) so you can
@@ -10,19 +10,21 @@ Adapting your .NET Application's NLog logging to include Loupe
 To convert your .NET application's existing use of the NLog logging framework to include Loupe you need:
 
 * (recommended) Download and install the latest version of Loupe Desktop to view the logs
-* The Loupe Agent for NLog  from NuGet or the Agent.NLog project containing the class file: GibraltarTarget.cs
+* The Loupe Agent for NLog from NuGet
 * Your NLog configuration file (app.config, NLog.config, NLog.dll.nlog, etc),
   or source code if programmatic configuration is used.
 
-To add this agent to your solution or build process
+To add this agent to your application
 --------------------------------------------------------------------------
 
 Just add the appropriate Loupe Agent for NLog NuGet package to your project
-* [Loupe.Agent.NLog](https://www.nuget.org/packages/Loupe.Agent.NLog/) for NLog 4.5 and .NET Core
+* [Loupe.Agent.NLog](https://www.nuget.org/packages/Loupe.Agent.NLog/) for NLog 4.5 and .NET Core / .NET Standard
 * [Loupe Agent for NLog 4 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog4/) for NLog 4.4 (and .NET 4.5)
 * [Loupe Agent for NLog 2 From NuGet](https://www.nuget.org/packages/Gibraltar.Agent.NLog2/) for NLog 2 & 3
   
-This will automatically add the Loupe Agent if it hasn't been previously added.
+This will automatically add the Loupe Agent if it hasn't been previously added.  
+This only has to be done once at the process level of your application, not every place
+that NLog is used.
 
 Adjust your NLog config to include NLog target for Loupe
 ----------------------------------------------------
@@ -156,6 +158,33 @@ Agent and initialize its automatic monitoring features.  For example:</p>
 
 ```C#
 mainLogger.Info("Entering application.");
+```
+
+Additionally, the Loupe Agent will keep your application running in some circumstances
+as it has a foreground thread to ensure it has an opportunity to shut down cleanly.  Therefore,
+it's important to be sure that a call is made to Log.EndSession on the Loupe agent as your
+application is exiting to put Loupe into synchronous logging mode (which is slower) and prepare
+it to let the application exit.  In .NET Core this is handled automatically if Loupe is added
+as a service to the Host application but if you're using .NET Framework or another situation
+where this doens't happen automaticaly, it's recommended that you call Log.EndSession in a
+finally clause, such as this:
+
+```C#
+private static void Main()
+{
+    Application.EnableVisualStyles();
+    Application.SetCompatibleTextRenderingDefault(false);
+
+    try
+    {
+        log.Info("Starting application.");
+        Application.Run(new TestForm());
+    }
+    finally
+    {
+        Log.EndSession("Application shutting down");
+    }
+}
 ```
 
 Building the Agent
