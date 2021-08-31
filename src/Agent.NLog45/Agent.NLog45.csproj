@@ -18,6 +18,8 @@
     <RepositoryUrl>https://github.com/gibraltarsoftware/gibraltar.agent.nlog2</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+	  <EmbedUntrackedSources>true</EmbedUntrackedSources>
+	  <DebugType>embedded</DebugType>
     <description>NLog is a powerful, flexible logging system available for all .NET platforms.  It's a great choice when you need very sophisticated log gathering capabilities such as sending log messages from clients to servers, multiple logging levels used simultaneously in the application, and a range of other sophisticated features. This package enables NLog message to route into Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</description>
     <summary>Connects NLog with Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</summary>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -29,12 +31,21 @@
     <DocumentationFile>bin\Loupe.Agent.NLog.xml</DocumentationFile>
     <PackageTags>Loupe;Logging;NLog</PackageTags>
   </PropertyGroup>
+	<PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
   <ItemGroup>
     <None Include="..\assets\loupe-192x192.png" Pack="true" PackagePath="" />
+    <None Include="content\app.config.transform" Pack="true" PackagePath="content" />
+    <None Include="content\web.config.transform" Pack="true" PackagePath="content" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Loupe.Agent.Core">
       <Version>4.9.0.13</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NLog">
       <Version>4.5.11</Version>

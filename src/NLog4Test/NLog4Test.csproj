@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A289FA07-A56B-4A81-AC75-E142E7A29976}</ProjectGuid>
+    <ProjectGuid>{9008DF78-6F2A-4E54-9DEA-5AB3613647DF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLogTest</RootNamespace>

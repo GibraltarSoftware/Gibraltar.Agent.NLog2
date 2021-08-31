@@ -1,78 +1,55 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AA3FC450-1152-4FA7-BB7F-E878B1C15D6D}</ProjectGuid>
+    <TargetFrameworks>net40</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gibraltar.Agent.NLog</RootNamespace>
     <AssemblyName>Gibraltar.Agent.NLog4</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
+	  <AssemblyTitle>Loupe Agent for NLog4</AssemblyTitle>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Gibraltar.Agent.NLog4</PackageId>
+    <Version>4.9.1.0</Version>
+    <FileVersion>4.9.1.0</FileVersion>
+    <AssemblyVersion>4.9.1.0</AssemblyVersion>
+    <Company>Gibraltar Software, Inc.</Company>
+    <Authors>Gibraltar Software, Inc.</Authors>
+    <Product>Loupe</Product>
+    <Copyright>Copyright © 2008-2021 Gibraltar Software, Inc.</Copyright>
+    <PackageProjectUrl>https://onloupe.com</PackageProjectUrl>
+    <PackageIcon>loupe-192x192.png</PackageIcon>
+    <RepositoryUrl>https://github.com/gibraltarsoftware/gibraltar.agent.nlog2</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+	  <EmbedUntrackedSources>true</EmbedUntrackedSources>
+	  <DebugType>embedded</DebugType>
+    <description>NLog is a powerful, flexible logging system available for all .NET platforms.  It's a great choice when you need very sophisticated log gathering capabilities such as sending log messages from clients to servers, multiple logging levels used simultaneously in the application, and a range of other sophisticated features. This package enables NLog message to route into Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</description>
+    <summary>Connects NLog with Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</summary>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DisableImplicitAssetTargetFallback>true</DisableImplicitAssetTargetFallback>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>..\..\loupe.agent.snk</AssemblyOriginatorKeyFile>
+    <DocumentationFile>bin\Gibraltar.Agent.NLog4.xml</DocumentationFile>
+    <PackageTags>Loupe;Logging;NLog</PackageTags>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gibraltar.Agent, Version=4.7.0.0, Culture=neutral, PublicKeyToken=ca42a1ee8d2e42d3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Gibraltar.Agent.4.7.10\lib\net40\Gibraltar.Agent.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.0.0\lib\net40\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <None Include="..\assets\loupe-192x192.png" Pack="true" PackagePath="" />
+    <None Include="content\app.config.transform" Pack="true" PackagePath="content" />
+    <None Include="content\web.config.transform" Pack="true" PackagePath="content" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GibraltarTarget.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="Gibraltar.Agent">
+      <Version>4.7.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.0.0</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="content\app.config.transform" />
-    <None Include="content\web.config.transform" />
-    <None Include="Gibraltar.Agent.NLog4.nuspec" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release $(ProjectDir)..\..\dependencies\NuGet.exe Pack $(ProjectPath) -Prop Configuration=Release</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
