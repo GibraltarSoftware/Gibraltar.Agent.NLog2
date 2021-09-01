@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{B021ADBF-C603-473F-AA2A-1B1F4BDFB6A1}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agent.NLog45", "src\Agent.NLog45\Agent.NLog45.csproj", "{AA3FC450-1152-4FA7-BB7F-E878B1C15D6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog45Test", "src\NLog45Test\NLog45Test.csproj", "{A289FA07-A56B-4A81-AC75-E142E7A29976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agent.NLog2", "src\Agent.NLog2\Agent.NLog2.csproj", "{9D9CDAC7-BEE3-4C7C-9F4C-1701226CC8AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agent.NLog4", "src\Agent.NLog4\Agent.NLog4.csproj", "{CE16EF19-A67D-4607-9E3F-454AE25338C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog4Test", "src\NLog4Test\NLog4Test.csproj", "{9008DF78-6F2A-4E54-9DEA-5AB3613647DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogTest", "src\NLogTest\NLogTest.csproj", "{D01215C1-6D6C-46AA-A608-3B7B693BA2A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA3FC450-1152-4FA7-BB7F-E878B1C15D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3FC450-1152-4FA7-BB7F-E878B1C15D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3FC450-1152-4FA7-BB7F-E878B1C15D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3FC450-1152-4FA7-BB7F-E878B1C15D6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A289FA07-A56B-4A81-AC75-E142E7A29976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A289FA07-A56B-4A81-AC75-E142E7A29976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A289FA07-A56B-4A81-AC75-E142E7A29976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A289FA07-A56B-4A81-AC75-E142E7A29976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D9CDAC7-BEE3-4C7C-9F4C-1701226CC8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D9CDAC7-BEE3-4C7C-9F4C-1701226CC8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D9CDAC7-BEE3-4C7C-9F4C-1701226CC8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D9CDAC7-BEE3-4C7C-9F4C-1701226CC8AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE16EF19-A67D-4607-9E3F-454AE25338C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE16EF19-A67D-4607-9E3F-454AE25338C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE16EF19-A67D-4607-9E3F-454AE25338C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE16EF19-A67D-4607-9E3F-454AE25338C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9008DF78-6F2A-4E54-9DEA-5AB3613647DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9008DF78-6F2A-4E54-9DEA-5AB3613647DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9008DF78-6F2A-4E54-9DEA-5AB3613647DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9008DF78-6F2A-4E54-9DEA-5AB3613647DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D01215C1-6D6C-46AA-A608-3B7B693BA2A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01215C1-6D6C-46AA-A608-3B7B693BA2A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01215C1-6D6C-46AA-A608-3B7B693BA2A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01215C1-6D6C-46AA-A608-3B7B693BA2A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F465FD8F-A2BE-4224-B3AC-DB467D182D04}
+	EndGlobalSection
+EndGlobal
