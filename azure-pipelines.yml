@@ -6,9 +6,9 @@ variables:
   agentSolution: 'All.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  major: 4
-  minor: 10
-  revision: 1
+  major: 5
+  minor: 0
+  revision: 0
   fileVersion: '$(Build.BuildNumber)'
 
 jobs:

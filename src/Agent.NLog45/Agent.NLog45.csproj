@@ -6,13 +6,13 @@
     <AssemblyName>Loupe.Agent.NLog</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Loupe.Agent.NLog</PackageId>
-    <Version>4.9.1.0</Version>
-    <FileVersion>4.9.1.0</FileVersion>
-    <AssemblyVersion>4.9.1.0</AssemblyVersion>
+	  <Version>5.0.0.0</Version>
+	  <FileVersion>5.0.0.0</FileVersion>
+	  <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <Company>Gibraltar Software, Inc.</Company>
     <Authors>Gibraltar Software, Inc.</Authors>
     <Product>Loupe</Product>
-    <Copyright>Copyright © 2008-2020 Gibraltar Software, Inc.</Copyright>
+    <Copyright>Copyright © 2008-2023 Gibraltar Software, Inc.</Copyright>
     <PackageProjectUrl>https://onloupe.com</PackageProjectUrl>
     <PackageIcon>loupe-192x192.png</PackageIcon>
     <RepositoryUrl>https://github.com/gibraltarsoftware/gibraltar.agent.nlog2</RepositoryUrl>
@@ -41,9 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Loupe.Agent.Core">
-      <Version>4.12.0.2</Version>
+      <Version>5.0.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
