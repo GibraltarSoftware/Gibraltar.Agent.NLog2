@@ -16,6 +16,9 @@ namespace Gibraltar.Agent.NLog
     {
         private const string ThisLogSystem = "NLog";
 
+        /// <summary>
+        /// Default constructor for the GibraltarTarget
+        /// </summary>
         public GibraltarTarget()
         {
             Layout = new SimpleLayout("${callsite}"); //just to force NLog to include stack trace info.
