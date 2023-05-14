@@ -23,6 +23,8 @@
     <description>NLog is a powerful, flexible logging system available for all .NET platforms.  It's a great choice when you need very sophisticated log gathering capabilities such as sending log messages from clients to servers, multiple logging levels used simultaneously in the application, and a range of other sophisticated features. This package enables NLog message to route into Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</description>
     <summary>Connects NLog with Loupe - a black box recorder for your application that can gather data from wherever your application is run and get it back to you, anywhere in the world.</summary>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <DisableImplicitAssetTargetFallback>true</DisableImplicitAssetTargetFallback>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <SignAssembly>true</SignAssembly>
