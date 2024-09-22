@@ -4,14 +4,22 @@ trigger:
 
 variables:
 - group: code-signing
-- agentSolution: 'All.sln'
-- buildPlatform: 'Any CPU'
-- buildConfiguration: 'Release'
-- major: 5
-- minor: 0
-- revision: 0
-- fileVersion: '$(Build.BuildNumber)'
-- isPRBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
+- name: agentSolution
+  value: 'All.sln'
+- name: buildPlatform
+  value: 'Any CPU'
+- name: buildConfiguration
+  value: 'Release'
+- name: major
+  value: 5
+- name: minor
+  value: 0
+- name: revision
+  value: 0
+- name: fileVersion
+  value: '$(Build.BuildNumber)'
+- name: isPRBuild
+  value: $[eq(variables['Build.Reason'], 'PullRequest')]
 
 jobs:
 - job: build
