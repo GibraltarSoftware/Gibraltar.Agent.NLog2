@@ -70,7 +70,7 @@ jobs:
     displayName: 'Stage NuGet Packages'  
     inputs:
       sourceFolder: '$(Build.SourcesDirectory)\src'
-      contents: '**\bin\**\?(*.nupkg|*.snupkg)'
+      contents: '**\bin\**\*.nupkg'
       flattenFolders: true
       targetFolder: '$(Build.ArtifactStagingDirectory)\packages'
 
@@ -80,13 +80,6 @@ jobs:
     inputs:
       command: 'custom'
       arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.nupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword $(codeSigningCertPassword) -Timestamper http://timestamp.comodoca.com -Verbosity detailed
-
-  - task: NuGetCommand@2
-    displayName: 'Sign NuGet Symbol Packages'  
-    condition: ne(variables['isPRBuild'], 'true')
-    inputs:
-      command: 'custom'
-      arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.snupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword $(codeSigningCertPassword) -Timestamper http://timestamp.comodoca.com -Verbosity detailed
 
   - task: PublishBuildArtifacts@1
     inputs:
