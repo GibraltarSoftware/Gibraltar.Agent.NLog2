@@ -4,6 +4,8 @@ trigger:
 
 variables:
 - group: code-signing
+
+variables:
   agentSolution: 'All.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
