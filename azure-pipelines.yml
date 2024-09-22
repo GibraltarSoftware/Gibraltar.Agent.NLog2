@@ -10,6 +10,10 @@ variables:
   minor: 0
   revision: 0
   fileVersion: '$(Build.BuildNumber)'
+  isPRBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
+
+variableGroups:
+- name: code-signing
 
 jobs:
 - job: build
@@ -20,6 +24,7 @@ jobs:
   - task: DownloadSecureFile@1
     displayName: 'Download Signing Key'  
     name: loupeAgentSigningKey
+    condition: ne(variables['isPRBuild'], 'true'))
     inputs:
       secureFile: 'loupe.agent.snk'
       overWrite: true
@@ -27,12 +32,14 @@ jobs:
   - task: DownloadSecureFile@1
     displayName: 'Download Code Signing Cert'  
     name: GibraltarSoftwareCCC
+    condition: ne(variables['isPRBuild'], 'true'))
     inputs:
       secureFile: 'GibraltarSoftwareCCC.pfx'
       overWrite: true
 
   - task: CopyFiles@2
     displayName: 'Copy Signing Key to Build Location'  
+    condition: ne(variables['isPRBuild'], 'true'))
     inputs:
       SourceFolder: '$(Agent.TempDirectory)'
       Contents: 'loupe.agent.snk'
@@ -61,15 +68,17 @@ jobs:
 
   - task: NuGetCommand@2
     displayName: 'Sign NuGet Packages'  
+    condition: ne(variables['isPRBuild'], 'true'))
     inputs:
       command: 'custom'
-      arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.nupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword f4rd+GM% -Timestamper http://timestamp.comodoca.com -Verbosity detailed
+      arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.nupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword $(codeSigningCertPassword) -Timestamper http://timestamp.comodoca.com -Verbosity detailed
 
   - task: NuGetCommand@2
     displayName: 'Sign NuGet Symbol Packages'  
+    condition: ne(variables['isPRBuild'], 'true'))
     inputs:
       command: 'custom'
-      arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.snupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword f4rd+GM% -Timestamper http://timestamp.comodoca.com -Verbosity detailed
+      arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.snupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword $(codeSigningCertPassword) -Timestamper http://timestamp.comodoca.com -Verbosity detailed
 
   - task: PublishBuildArtifacts@1
     inputs:
