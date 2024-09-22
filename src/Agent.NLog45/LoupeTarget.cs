@@ -155,7 +155,7 @@ namespace Loupe.Agent.NLog
         JsonLayout GetMessageDetailsLayout(bool allocate)
         {
             if (MessageDetails == null && allocate)
-                MessageDetails = new JsonLayout() { MaxRecursionLimit = 1 };
+                MessageDetails = new JsonLayout() { MaxRecursionLimit = 1, RenderEmptyObject = false, EscapeForwardSlash = false };
             return MessageDetails as JsonLayout;
         }
 

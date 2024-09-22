@@ -129,10 +129,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Loupe.Agent.Core">
-      <Version>5.0.0.1</Version>
+      <Version>5.0.0.26</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.5.11</Version>
+      <Version>4.7.15</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
