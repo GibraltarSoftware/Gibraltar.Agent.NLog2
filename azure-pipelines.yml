@@ -20,6 +20,8 @@ variables:
   value: '$(Build.BuildNumber)'
 - name: isPRBuild
   value: $[eq(variables['Build.Reason'], 'PullRequest')]
+- name: signAssembly
+  value: $[ne(variables['isPRBuild'], 'true')]
 
 jobs:
 - job: build
@@ -62,7 +64,7 @@ jobs:
       solution: '$(agentSolution)'
       platform: '$(buildPlatform)'
       configuration: '$(buildConfiguration)'
-      msbuildArgs: '/p:CustomVersion=$(fileVersion) /p:CustomInformationalVersion=$(fileVersion) /p:PackageVersion=$(fileVersion)'
+      msbuildArgs: '/p:CustomVersion=$(fileVersion) /p:CustomInformationalVersion=$(fileVersion) /p:PackageVersion=$(fileVersion) /p:SignAssembly=$(signAssembly)'
 
   - task: CopyFiles@2
     displayName: 'Stage NuGet Packages'  
