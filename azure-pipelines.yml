@@ -3,13 +3,25 @@ trigger:
 - main
 
 variables:
-  agentSolution: 'All.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  major: 5
-  minor: 0
-  revision: 0
-  fileVersion: '$(Build.BuildNumber)'
+- group: code-signing
+- name: agentSolution
+  value: 'All.sln'
+- name: buildPlatform
+  value: 'Any CPU'
+- name: buildConfiguration
+  value: 'Release'
+- name: major
+  value: 5
+- name: minor
+  value: 0
+- name: revision
+  value: 0
+- name: fileVersion
+  value: '$(Build.BuildNumber)'
+- name: isPRBuild
+  value: $[eq(variables['Build.Reason'], 'PullRequest')]
+- name: signAssembly
+  value: $[ne(variables['isPRBuild'], 'true')]
 
 jobs:
 - job: build
@@ -18,11 +30,24 @@ jobs:
 
   steps:
   - task: DownloadSecureFile@1
+    displayName: 'Download Signing Key'  
     name: loupeAgentSigningKey
+    condition: ne(variables['isPRBuild'], 'true')
     inputs:
       secureFile: 'loupe.agent.snk'
+      overWrite: true
+
+  - task: DownloadSecureFile@1
+    displayName: 'Download Code Signing Cert'  
+    name: GibraltarSoftwareCCC
+    condition: ne(variables['isPRBuild'], 'true')
+    inputs:
+      secureFile: 'GibraltarSoftwareCCC.pfx'
+      overWrite: true
 
   - task: CopyFiles@2
+    displayName: 'Copy Signing Key to Build Location'
+    condition: ne(variables['isPRBuild'], 'true')
     inputs:
       SourceFolder: '$(Agent.TempDirectory)'
       Contents: 'loupe.agent.snk'
@@ -39,14 +64,29 @@ jobs:
       solution: '$(agentSolution)'
       platform: '$(buildPlatform)'
       configuration: '$(buildConfiguration)'
-      msbuildArgs: '/p:CustomVersion=$(fileVersion) /p:CustomInformationalVersion=$(fileVersion) /p:PackageVersion=$(fileVersion)'
+      msbuildArgs: '/p:CustomVersion=$(fileVersion) /p:CustomInformationalVersion=$(fileVersion) /p:PackageVersion=$(fileVersion) /p:SignAssembly=$(signAssembly)'
 
   - task: CopyFiles@2
+    displayName: 'Stage NuGet Packages'  
     inputs:
-      sourceFolder: '$(Build.SourcesDirectory)/src'
-      contents: '**/*.nupkg'
+      sourceFolder: '$(Build.SourcesDirectory)\src'
+      contents: '**\bin\**\?(*.nupkg|*.snupkg)'
       flattenFolders: true
-      targetFolder: '$(Build.ArtifactStagingDirectory)/packages'
+      targetFolder: '$(Build.ArtifactStagingDirectory)\packages'
+
+  - task: NuGetCommand@2
+    displayName: 'Sign NuGet Packages'  
+    condition: ne(variables['isPRBuild'], 'true')
+    inputs:
+      command: 'custom'
+      arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.nupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword $(codeSigningCertPassword) -Timestamper http://timestamp.comodoca.com -Verbosity detailed
+
+  - task: NuGetCommand@2
+    displayName: 'Sign NuGet Symbol Packages'  
+    condition: ne(variables['isPRBuild'], 'true')
+    inputs:
+      command: 'custom'
+      arguments: sign $(Build.ArtifactStagingDirectory)\packages\*.snupkg -CertificatePath $(Agent.TempDirectory)/GibraltarSoftwareCCC.pfx -CertificatePassword $(codeSigningCertPassword) -Timestamper http://timestamp.comodoca.com -Verbosity detailed
 
   - task: PublishBuildArtifacts@1
     inputs:
